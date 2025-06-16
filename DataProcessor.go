@@ -25,8 +25,19 @@ func parser(data []byte) (Input, error) {
 	// parse the data
 	lines := bytes.Split(data, []byte("\n"))
 	// each entry is line 1 id, line 2 operator, line 3 num 1, line 4 num2
+	if len(lines) < 4 {
+		return Input{}, fmt.Errorf("invalid input format")
+	}
 	id := string(lines[0])
+	if id == "" {
+		return Input{}, fmt.Errorf("invalid Id: %s", id)
+	}
 	op := string(lines[1])
+	switch op {
+	case "+", "*", "-", "/":
+	default:
+		return Input{}, fmt.Errorf("invalid op: %q", op)
+	}
 	val1, err := strconv.Atoi(string(lines[2]))
 	if err != nil {
 		return Input{}, err
