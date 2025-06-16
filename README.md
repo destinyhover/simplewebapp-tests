@@ -1,46 +1,17 @@
-# Simple Web App
+# simplewebapp-tests
 
-This app runs a web server that performs simple calculations and writes the results to a local file.
+This is a personal fork of [Jon Bodner](https://github.com/learning-go-book-2e/simplewebapp)'s Go web application, extended for educational purposes.
 
-To build:
+## 🔧 What's added
 
-```
-go build .
-```
+- Unit tests for:
+  - `parser.go`
+  - `WriteData.go`
+  - `DataProcessor.go`
+- Basic fuzz test data (removed from tracked files)
+- `.gitignore` cleanup for build artifacts and coverage files
 
-To run:
+## 🚀 How to run tests
 
-```
-./simplewebapp
-```
-The input is:
-
-```
-ID
-OP
-VAL1
-VAL2
-```
-
-- ID is any string
-- OP is `+`, `-`, `*`, or `/`
-- VAL1 and VAL2 are integers
-
-Sample input:
-
-```
-CALC_1
-+
-3
-2
-```
-
-Sample call to endpoint:
-
-```
-curl -X POST localhost:8080 --data 'CALC_2                                    
-*
-100
-3000'
-```
-
+```bash
+go test ./...
